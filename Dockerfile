@@ -5,10 +5,12 @@ COPY . .
 
 RUN chown -R www-data ./*
 
-RUN apt-get update
-RUN apt-get install -y libonig-dev libpq-dev
-RUN docker-php-ext-install pdo_mysql pdo_pgsql
+RUN apt-get update && apt-get install -y \
+    libonig-dev \
+    libpq-dev \
+    libsqlite3-dev \
+    && docker-php-ext-install pdo_mysql pdo_pgsql pdo_sqlite
 
-EXPOSE 1882
+EXPOSE 80
 VOLUME /var/www/html
-CMD [ "apache2-foreground" ]
+CMD ["apache2-foreground"]
