@@ -26,11 +26,11 @@ jobs:
       - name: Checkout the default branch
         run: git checkout master
 
-      - name: Merge changes from upstream default branch
-        run: git merge upstream/master --ff-only
+      - name: Rebase changes from upstream default branch
+        run: git rebase upstream/master
 
       - name: Push changes to the default branch on fork
-        run: git push origin master
+        run: git push origin master --force
 
       - name: Push tags from upstream to fork
         run: git push origin --tags
